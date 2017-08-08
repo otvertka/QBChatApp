@@ -31,6 +31,19 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/signup_editFullName"
+                android:hint="Enter your Full name"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
                 android:id="@+id/signup_editPassword"
                 android:hint="Enter your password"
                 android:inputType="textPassword"
