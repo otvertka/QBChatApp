@@ -1,10 +1,12 @@
 package com.example.qbchatapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.qbchatapp.Adapters.ChatDialogsAdapters;
@@ -28,13 +30,30 @@ public class ChatDialogsActivity extends AppCompatActivity {
     ListView lstChatDialogs;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        loadChatDialogs();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_dialogs);
 
         createSessionForChat();
 
+        lstChatDialogs = (ListView)findViewById(R.id.lstChatDialogs);
+
         loadChatDialogs();
+
+        floatingActionButton = (FloatingActionButton)findViewById(R.id.chatdialog_adduser);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChatDialogsActivity.this, ListUsersActivity.class);
+                startActivity(intent);
+            }
+        });
         
     }
 
@@ -53,7 +72,7 @@ public class ChatDialogsActivity extends AppCompatActivity {
 
             @Override
             public void onError(QBResponseException e) {
-
+                Log.e("ERROR", ""+e.getMessage());
             }
         });
     }
