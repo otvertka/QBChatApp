@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.qbchatapp.Adapters.ChatDialogsAdapters;
+import com.example.qbchatapp.Common.Common;
 import com.quickblox.auth.QBAuth;
 import com.quickblox.auth.session.BaseService;
 import com.quickblox.auth.session.QBSession;
@@ -43,6 +45,15 @@ public class ChatDialogsActivity extends AppCompatActivity {
         createSessionForChat();
 
         lstChatDialogs = (ListView)findViewById(R.id.lstChatDialogs);
+        lstChatDialogs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                QBChatDialog qbChatDialog = (QBChatDialog)lstChatDialogs.getAdapter().getItem(i);
+                Intent intent = new Intent(ChatDialogsActivity.this, ChatMessageActivity.class);
+                intent.putExtra(Common.DIALOG_EXTRA, qbChatDialog);
+                startActivity(intent);
+            }
+        });
 
         loadChatDialogs();
 
@@ -86,6 +97,8 @@ public class ChatDialogsActivity extends AppCompatActivity {
         String user, password;
         user = getIntent().getStringExtra("user");
         password = getIntent().getStringExtra("password");
+
+        //Load all user and save the cache
 
         final QBUser qbUser = new QBUser(user, password);
         QBAuth.createSession(qbUser).performAsync(new QBEntityCallback<QBSession>() {

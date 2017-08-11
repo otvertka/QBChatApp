@@ -32,5 +32,6 @@ dependencies {
     compile 'com.quickblox:quickblox-android-sdk-core:3.3.0'
     compile 'com.quickblox:quickblox-android-sdk-chat:3.3.0'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    compile 'com.github.lguipeng:BubbleView:1.0.1'
     testCompile 'junit:junit:4.12'
 }

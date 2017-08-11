@@ -6,7 +6,12 @@ package com.example.qbchatapp.Common;
 
 public class Common {
 
+    public static final String DIALOG_EXTRA = "Dialoogs";
+
+
     private static String createChatDialogName(){
+
+
         return "padla";
     }
 }
