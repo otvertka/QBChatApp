@@ -1,6 +1,7 @@
 package com.example.qbchatapp.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,10 @@ public class ChatMessageAdapter extends BaseAdapter {
         if (convertView == null){
 
             LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            Log.d("myTag", " " + qbChatMessages.get(i).getSenderId());
+            Log.d("myTag", " " + QBChatService.getInstance().getUser().getId());
+
             if (qbChatMessages.get(i).getSenderId().equals(QBChatService.getInstance().getUser().getId())){
 
                 view = inflater.inflate(R.layout.list_send_message, null);
